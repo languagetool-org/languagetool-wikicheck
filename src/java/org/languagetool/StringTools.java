@@ -18,13 +18,10 @@
  */
 package org.languagetool;
 
-import org.apache.commons.lang.StringEscapeUtils;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.regex.Pattern;
 
-public class StringTools {
+public final class StringTools {
   
   private StringTools() {
     // static methods only, no public constructor
@@ -33,21 +30,6 @@ public class StringTools {
   public static String formatDate(Date date) {
     final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     return sdf.format(date);
-  }
-  
-  /**
-   * Return a shortened copy of a string.
-   * 
-   * @param s the string to shorten
-   * @param maxLen the maximum length of the new string (without marker)
-   * @param marker appended to the end of the string if it was shortened
-   * @since 0.9.3
-   */
-  public static String shorten(String s, int maxLen, String marker) {
-    if (s.length() > maxLen) {
-      return s.substring(0, maxLen) + marker;
-    }
-    return s;
   }
   
   public static String formatError(String s) {
@@ -60,21 +42,6 @@ public class StringTools {
   /** Remove the "<err>" markup */
   public static String cleanError(String s) {
     return s.replaceAll("<err>", "").replaceAll("</err>", "");
-  }
-
-  /**
-   * @param text the text to be escaped
-   * @param searchString the string to be searched (case-insensitively) and marked with a span in {@code text}
-   */
-  public static String escapeHtmlAndHighlightMatches(String text, String searchString) {
-    if (searchString == null) {
-      return StringEscapeUtils.escapeHtml(text);
-    }
-    String newText = text.replaceAll("(?i)(" + Pattern.quote(searchString) + ")", "<span class='filterMatch'>$1</span>");
-    newText = StringEscapeUtils.escapeHtml(newText);
-    newText = newText.replaceAll("&lt;span class='filterMatch'&gt;", "<span class='filterMatch'>");
-    newText = newText.replaceAll("&lt;/span&gt;", "</span>");
-    return newText;
   }
 
 }
