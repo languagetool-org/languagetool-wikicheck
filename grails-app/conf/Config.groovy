@@ -7,9 +7,6 @@ hide.languages = ["cs", "ml", "be", "da", "sk", "zh", "ast", "km", "en-GB", "en-
 // show these languages directly in the navigation bar (not in the drop down):
 expose.languages = ["en", "fr", "de", "es", "pl", "ca", "br", "nl", "pt", "es", "eo"]
 maxPatternElements = 5
-// disable some rules for WikiCheck to avoid too many false alarms: TODO
-disabledRulesPropFile="/home/languagetool/ltcommunity/corpus/ltcommunity/disabled_rules.properties"
-disabledRulesForFeedPropFile="/home/languagetool/ltcommunity/corpus/ltcommunity/disabled_rules_for_feed.properties"
 
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
@@ -62,9 +59,14 @@ grails.hibernate.cache.queries = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+        // disable some rules for WikiCheck to avoid too many false alarms:
+        disabledRulesPropFile="/home/languagetool/ltcommunity/corpus/ltcommunity/disabled_rules.properties"
+        disabledRulesForFeedPropFile="/home/languagetool/ltcommunity/corpus/ltcommunity/disabled_rules_for_feed.properties"
     }
     production {
         grails.logging.jul.usebridge = false
+        disabledRulesPropFile="/data/project/languagetool/git/languagetool-community-website/grails-app/conf/disabled_rules.properties"
+        disabledRulesForFeedPropFile="/data/project/languagetool/git/languagetool-community-website/grails-app/conf/disabled_rules_for_feed.properties"
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
