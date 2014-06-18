@@ -50,6 +50,7 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
+        compile ":feeds:1.6"
         runtime ":hibernate:$grailsVersion"
         runtime ":jquery:1.8.3"
         runtime ":resources:1.2.7"
