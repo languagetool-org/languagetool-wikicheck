@@ -1,5 +1,7 @@
 dataSource {
-    pooled = true
+    // without pooled = false, we get "Can not read response from server. Expected to read 4 bytes, read 0 bytes before
+    // connection was unexpectedly lost." if the web app hasn't been used for some minutes:
+    pooled = false
 }
 hibernate {
     cache.use_second_level_cache = true
