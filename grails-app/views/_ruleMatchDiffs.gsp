@@ -22,13 +22,13 @@
                 <tr>
                     <td colspan="2">
                         <g:if test="${rule instanceof PatternRule}">
-                            <g:link controller="rule" action="show" id="${rule.getId()}"
-                                    params="${[lang: lang, subId: rule.getSubId()]}">${ruleMatch.getMessage().
-                                    replace('<suggestion>', '<span class=\'correction\'>').replace('</suggestion>', '</span>')}</g:link>
+                            <a href="http://community.languagetool.org/rule/show/${rule.getId().encodeAsHTML()}?lang=${lang.encodeAsHTML()}&subId=${rule.getSubId().encodeAsHTML()}"
+                                >${ruleMatch.getMessage().
+                                    replace('<suggestion>', '<span class=\'correction\'>').replace('</suggestion>', '</span>')}</a>
                         </g:if>
                         <g:else>
-                            <g:link controller="rule" action="show" id="${rule.getId()}"
-                                    params="${[lang: lang]}">${ruleMatch.getMessage().replaceAll("<suggestion>", "<span class='correction'>").replaceAll("</suggestion>", "</span>")}</g:link>
+                            <a href="http://community.languagetool.org/rule/show/${rule.getId().encodeAsHTML()}?lang=${lang.encodeAsHTML()}"
+                                >${ruleMatch.getMessage().replaceAll("<suggestion>", "<span class='correction'>").replaceAll("</suggestion>", "</span>")}</a>
                         </g:else>
                     </td>
                 </tr>

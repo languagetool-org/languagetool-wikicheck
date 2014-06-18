@@ -145,8 +145,8 @@
 
                                 <g:if test="${match.ruleId != prevRuleId}">
                                     <div class="ruleMessage">
-                                        <g:link controller="rule" action="show" id="${match.ruleId}"
-                                                params="${[lang: lang, subId: match.ruleSubId, textToCheck: cleanText]}">${StringTools.formatError(match.ruleMessage.encodeAsHTML())}</g:link>
+                                        <a href="http://community.languagetool.org/rule/show/${match.ruleId.encodeAsHTML()}?lang=${lang.encodeAsHTML()}&subId=${match.ruleSubId.encodeAsHTML()}&textToCheck=${cleanText.encodeAsHTML()}"
+                                            >${StringTools.formatError(match.ruleMessage.encodeAsHTML())}</a>
                                         <span class="category">${match.ruleCategory}</span>
                                     </div>
                                 </g:if>
@@ -158,7 +158,7 @@
                                     <g:form method="post" onsubmit="return markedAsFixedOrFalseAlarm(${match.id})">
                                         <div style="margin-top: 5px">
                                             <g:set var="articleUrl" value="http://${match.languageCode.encodeAsHTML()}.wikipedia.org/wiki/${match.title.replace(' ', '_').encodeAsURL()}"/>
-                                            <g:link class="additionalFeedMatchLink" controller="pageCheck" action="pageCheck"
+                                            <g:link class="additionalFeedMatchLink" controller="pageCheck"
                                                          params="${[url:articleUrl, enabled:match.ruleId]}"><span style="font-weight:bold"><g:message code="ltc.wikicheck.check.again"/></span></g:link>
                                             &middot; <a class="additionalFeedMatchLink" href="http://${match.languageCode.encodeAsURL()}.wikipedia.org/w/index.php?title=${match.title.replace(' ', '_').encodeAsURL()}&amp;diff=${match.diffId}"
                                                 ><g:message code="ltc.feed.matches.diff"/></a>

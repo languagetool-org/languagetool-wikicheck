@@ -179,7 +179,7 @@ class FeedMatchesController {
                 def url = "http://${lang.getShortName()}.wikipedia.org/wiki/${match.title.replace(' ', '_').replace('&', '%26')}"
                 entry(match.ruleDescription) {
                     publishedDate = match.editDate
-                    link = createLink(controller: 'pageCheck', action: 'pageCheck', params: [url: url, enabled: match.ruleId], absolute: true)
+                    link = createLink(controller: 'pageCheck', action: 'index', params: [url: url, enabled: match.ruleId], absolute: true)
                     content
                 }
             }
