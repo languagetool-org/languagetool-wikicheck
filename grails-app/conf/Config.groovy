@@ -1,12 +1,10 @@
 wikipedia.summary.link = [ en: '[[LanguageTool]]', de: '[[WP:LanguageTool]]' ]
-max.text.length = 10000     // maximum length of texts to check
 // languages not visible in the user interface (e.g. because they are
 // not properly supported yet):
 hide.languages = ["cs", "ml", "be", "da", "sk", "zh", "ast", "km", "en-GB", "en-US", "en-CA", "en-ZA", "en-NZ", "en-AU",
         "de-DE", "de-AT", "de-CH", "pt-BR", "pt-PT", "ca-ES-valencia", "ca-ES", "de-DE-x-simple-language"]
 // show these languages directly in the navigation bar (not in the drop down):
 expose.languages = ["en", "fr", "de", "es", "pl", "ca", "br", "nl", "pt", "es", "eo"]
-maxPatternElements = 5
 
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
@@ -25,9 +23,6 @@ grails.mime.types = [
     text:          'text/plain',
     xml:           ['text/xml', 'application/xml']
 ]
-
-// URL Mapping Cache Max Size, defaults to 5000
-//grails.urlmapping.cache.maxsize = 1000
 
 // What URL patterns should be processed by the resources plugin
 grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*']
@@ -48,7 +43,7 @@ grails.enable.native2ascii = true
 // packages to include in Spring bean scanning
 grails.spring.bean.packages = []
 // whether to disable processing of multi part requests
-grails.web.disable.multipart=false
+grails.web.disable.multipart = false
 
 // request parameters to mask when logging exceptions
 grails.exceptionresolver.params.exclude = ['password']
