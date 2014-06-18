@@ -25,6 +25,10 @@ package org.languagetool
  */
 class FeedMatches {
 
+    static mapping = {
+        version(defaultValue: 1)  // as this field is filled from an external program
+    }
+
     static constraints = {
         fixDate(nullable: true)
         fixDiffId(nullable: true)

@@ -27,5 +27,8 @@ class FeedChecks {
 
     String languageCode
     Date checkDate
-    
+
+    static mapping = {
+        version(defaultValue: 1)  // as this field is filled from an external program
+    }
 }
