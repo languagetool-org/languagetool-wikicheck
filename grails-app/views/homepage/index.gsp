@@ -39,6 +39,10 @@
 
     </div>
 
+    <div style="margin-top: 30px">
+        <g:render template="/languageToolVersion"/>
+    </div>
+
 </div>
 
 </body>
