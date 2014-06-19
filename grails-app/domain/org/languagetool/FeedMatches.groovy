@@ -27,6 +27,13 @@ class FeedMatches {
 
     static mapping = {
         version(defaultValue: 1)  // as this field is filled from an external program
+        languageCode(index: 'language_code_idx')
+        ruleId(index: 'rule_id_idx')
+        title(index: 'title_idx')
+        fixDiffId(index: 'fix_diff_id_idx')
+        ruleCategory(index: 'rule_category_idx')
+        editDate(index: 'edit_date_idx')
+        fixDate(index: 'fix_date_idx')
     }
 
     static constraints = {

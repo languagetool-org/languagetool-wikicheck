@@ -30,5 +30,6 @@ class FeedChecks {
 
     static mapping = {
         version(defaultValue: 1)  // as this field is filled from an external program
+        languageCode(index: 'language_code_idx')
     }
 }

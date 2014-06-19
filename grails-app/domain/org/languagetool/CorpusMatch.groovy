@@ -30,6 +30,12 @@ class CorpusMatch {
         ruleSubID(nullable: true) // nullable because it was introduced later
     }
 
+    static mapping = {
+        languageCode(index: 'language_code_idx')
+        ruleID(index: 'rule_id_idx')
+        isVisible(index: 'is_visible_idx')
+    }
+
     String languageCode
     String ruleID
     String ruleCategory
