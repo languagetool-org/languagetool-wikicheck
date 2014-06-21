@@ -22,6 +22,8 @@ package org.languagetool
 /**
  * An error detected by the Atom Feed checker.
  * To be populated from external software, not from Grails.
+ * 
+ * NOTE: table should use MYISAM engine, InnoDB is too slow 
  */
 class FeedMatches {
 
