@@ -13,6 +13,8 @@
 
     <g:render template="/languageSelection"/>
 
+    <p><g:message code="ltc.wiki.intro"/></p>
+
     <div class="dialog">
 
         <h2 class="firstHeadline"><g:link controller="pageCheck" params="[lang: lang.getShortName()]"><g:message code="ltc.wiki.check"/></g:link></h2>
