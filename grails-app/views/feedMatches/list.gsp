@@ -8,26 +8,6 @@
         <title><g:message code="ltc.feed.matches.title"/> - ${language}</title>
         <meta name="robots" content="noindex,nofollow" />
         <g:javascript library="jquery" />
-        <script language="JavaScript">
-            function markedAsFixedOrFalseAlarm(feedMatchId) {
-                jQuery.ajax('${resource(dir:'feedMatches')}/markAsFixedOrFalseAlarm?id=' + feedMatchId,
-                        {
-                            type: 'POST',
-                            success: function(data, textStatus, jqXHR) {
-                                if (data == "ok") {
-                                    $('#ajaxFailure').html("");
-                                    $('#ajaxFeedback' + feedMatchId).html("${message(code:'ltc.feed.matches.marked')}");
-                                } else {
-                                    $('#ajaxFailure').html("<div class='warn'>Sorry, submitting your vote failed. Are you still logged in?</div>");
-                                }
-                            },
-                            error: function(jqXHR, textStatus, errorThrown) {
-                                $('#ajaxFailure').html("<div class='warn'>Sorry, submitting your vote failed</div>");
-                            }
-                        });
-                return false;
-            }
-        </script>
     </head>
     <body>
 
@@ -155,22 +135,14 @@
                                 <div style="margin-bottom: 5px; margin-top: 5px; margin-left: 20px;">
                                     <span style="font-family: monospace">${StringTools.formatError(match.errorContext.encodeAsHTML())}</span>
                                     <br/>
-                                    <g:form method="post" onsubmit="return markedAsFixedOrFalseAlarm(${match.id})">
-                                        <div style="margin-top: 5px">
-                                            <g:set var="articleUrl" value="http://${match.languageCode.encodeAsHTML()}.wikipedia.org/wiki/${match.title.replace(' ', '_').encodeAsURL()}"/>
-                                            <g:link class="additionalFeedMatchLink" controller="pageCheck"
-                                                         params="${[url:articleUrl, enabled:match.ruleId]}"><span style="font-weight:bold"><g:message code="ltc.wikicheck.check.again"/></span></g:link>
-                                            &middot; <a class="additionalFeedMatchLink" href="http://${match.languageCode.encodeAsURL()}.wikipedia.org/w/index.php?title=${match.title.replace(' ', '_').encodeAsURL()}&amp;diff=${match.diffId}"
-                                                ><g:message code="ltc.feed.matches.diff"/></a>
-                                            &middot; <a class="additionalFeedMatchLink" href="${articleUrl}">${match.title.encodeAsHTML()}</a>
-                                            <g:if test="${session.user}">
-                                                &middot;
-                                                <span id="ajaxFeedback${match.id}">
-                                                    <input type="submit" value="${message(code:'ltc.feed.matches.mark')}"/>
-                                                </span>
-                                            </g:if>
-                                        </div>
-                                    </g:form>
+                                    <div style="margin-top: 5px">
+                                        <g:set var="articleUrl" value="http://${match.languageCode.encodeAsHTML()}.wikipedia.org/wiki/${match.title.replace(' ', '_').encodeAsURL()}"/>
+                                        <g:link class="additionalFeedMatchLink" controller="pageCheck"
+                                                     params="${[url:articleUrl, enabled:match.ruleId]}"><span style="font-weight:bold"><g:message code="ltc.wikicheck.check.again"/></span></g:link>
+                                        &middot; <a class="additionalFeedMatchLink" href="http://${match.languageCode.encodeAsURL()}.wikipedia.org/w/index.php?title=${match.title.replace(' ', '_').encodeAsURL()}&amp;diff=${match.diffId}"
+                                            ><g:message code="ltc.feed.matches.diff"/></a>
+                                        &middot; <a class="additionalFeedMatchLink" href="${articleUrl}">${match.title.encodeAsHTML()}</a>
+                                    </div>
                                 </div>
 
                             </td>

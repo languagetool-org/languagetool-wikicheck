@@ -7,26 +7,6 @@
         <title><g:message code="ltc.corpus.match.title"/> - ${language}</title>
         <g:javascript library="jquery" />
         <meta name="robots" content="noindex,nofollow" />
-        <script language="JavaScript">
-            function markedAsFixedOrFalseAlarm(corpusMatchId) {
-                jQuery.ajax('${resource(dir:'corpusMatch')}/markAsFixedOrFalseAlarm?id=' + corpusMatchId,
-                        {
-                            type: 'POST',
-                            success: function(data, textStatus, jqXHR) {
-                                if (data == "ok") {
-                                    $('#ajaxFailure').html("");
-                                    $('#ajaxFeedback' + corpusMatchId).html("${message(code:'ltc.feed.matches.marked')}");
-                                } else {
-                                    $('#ajaxFailure').html("<div class='warn'>Sorry, submitting your vote failed. Are you still logged in?</div>");
-                                }
-                            },
-                            error: function(jqXHR, textStatus, errorThrown) {
-                                $('#ajaxFailure').html("<div class='warn'>Sorry, submitting your vote failed</div>");
-                            }
-                        });
-                return false;
-            }
-        </script>
     </head>
     <body>
 
@@ -125,20 +105,12 @@
                                 <g:set var="prevRuleId" value="${match.ruleID}"/>
 
                                 <div style="margin-bottom: 5px; margin-top: 5px; margin-left: 20px;">
-                                    <g:form method="post" onsubmit="return markedAsFixedOrFalseAlarm(${match.id})">
-                                        ${StringTools.formatError(match.errorContext.encodeAsHTML())}
-                                        <span class="additional"><g:link title="${message(code:'ltc.corpus.match.check.date')} ${StringTools.formatDate(match.checkDate).encodeAsHTML()}" class="additional" url="${match.sourceURI}">${match.sourceURI.replaceFirst("http://..\\.wikipedia\\.org/wiki/", "").encodeAsHTML()}</g:link></span>
-                                        <g:if test="${!match.sourceURI.startsWith('http://tatoeba.org')}">
-                                            <span class="additional"> - <g:link class="additional" controller="pageCheck" action="pageCheck"
-                                                                                params="${[url:match.sourceURI.replace(' ', '_'), enabled:match.ruleID]}"><g:message code="ltc.wikicheck.check.again"/></g:link></span>
-                                        </g:if>
-                                        <g:if test="${session.user}">
-                                            &middot;
-                                            <span id="ajaxFeedback${match.id}">
-                                                <input type="submit" value="${message(code:'ltc.feed.matches.mark')}"/>
-                                            </span>
-                                        </g:if>
-                                    </g:form>
+                                    ${StringTools.formatError(match.errorContext.encodeAsHTML())}
+                                    <span class="additional"><g:link title="${message(code:'ltc.corpus.match.check.date')} ${StringTools.formatDate(match.checkDate).encodeAsHTML()}" class="additional" url="${match.sourceURI}">${match.sourceURI.replaceFirst("http://..\\.wikipedia\\.org/wiki/", "").encodeAsHTML()}</g:link></span>
+                                    <g:if test="${!match.sourceURI.startsWith('http://tatoeba.org')}">
+                                        <span class="additional"> - <g:link class="additional" controller="pageCheck" action="pageCheck"
+                                                                            params="${[url:match.sourceURI.replace(' ', '_'), enabled:match.ruleID]}"><g:message code="ltc.wikicheck.check.again"/></g:link></span>
+                                    </g:if>
                                 </div>
 
                             </td>
