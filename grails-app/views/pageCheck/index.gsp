@@ -80,6 +80,10 @@
 
         <br />
 
+        <g:if test="${flash.message}">
+            <div class="message">${flash.message}</div>
+        </g:if>
+
         <g:if test="${result}">
 
             <h2 style="margin-top:10px;margin-bottom:10px"><g:message code="ltc.wikicheck.result.headline"/></h2>
@@ -153,6 +157,7 @@
 
             <br /><br />
             <g:render template="disabledRulesHint"/>
+            
         </g:if>
 
         <g:render template="/languageToolVersion"/>

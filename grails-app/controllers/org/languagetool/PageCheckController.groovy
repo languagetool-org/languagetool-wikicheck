@@ -41,7 +41,11 @@ class PageCheckController {
         }
         if (params.url) {
             long startTime = System.currentTimeMillis()
-            bookmarkletSanityCheck()
+            if (params.url.contains("languagetool.org/wikiCheck/")) {
+                flash.message = message(code:'ltc.wikicheck.bookmarklet.fail')
+                [languages: SortedLanguages.get(), langCode: langCode]
+                return
+            }
             WikipediaQuickCheck checker = new WikipediaQuickCheck()
             String pageUrl = getPageUrl(params, checker, langCode)
             String pageEditUrl = getPageEditUrl(pageUrl)
@@ -71,7 +75,9 @@ class PageCheckController {
                 log.info("Checking page " + pageUrl)
                 result = checker.checkPage(new URL(pageUrl))
             } catch (PageNotFoundException e) {
-                throw new Exception(message(code:'ltc.wikicheck.page.not.found', args: [pageUrl]))
+                flash.message = message(code:'ltc.wikicheck.page.not.found', args: [pageUrl])
+                [languages: SortedLanguages.get(), langCode: langCode]
+                return
             }
             params.lang = language.getShortName()
             long runTime = System.currentTimeMillis() - startTime
@@ -91,12 +97,6 @@ class PageCheckController {
         }
     }
 
-    private void bookmarkletSanityCheck() {
-        if (params.url.contains("languagetool.org/wikiCheck/")) {
-            throw new Exception("You clicked the WikiCheck bookmarklet - this link only works when you put it in your bookmarks and call the bookmark while you're on a Wikipedia page")
-        }
-    }
-
     /**
      * The old view that does not offer direct Wikipedia correction.
      */
@@ -113,7 +113,6 @@ class PageCheckController {
             langToDisabledRules.load(new FileInputStream(grailsApplication.config.disabledRulesPropFile))
 
             long startTime = System.currentTimeMillis()
-            bookmarkletSanityCheck()
             WikipediaQuickCheck checker = new WikipediaQuickCheck()
             String pageUrl = getPageUrl(params, checker, langCode)
             String pageEditUrl = getPageEditUrl(pageUrl)
