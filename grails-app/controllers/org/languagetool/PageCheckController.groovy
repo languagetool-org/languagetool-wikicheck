@@ -41,10 +41,12 @@ class PageCheckController {
         }
         if (params.url) {
             long startTime = System.currentTimeMillis()
-            if (params.url.contains("languagetool.org/wikiCheck/")) {
+            if (params.url.contains("/languagetool/pageCheck/") || params.url.contains("/languagetool-wikicheck/pageCheck/")) {
                 flash.message = message(code:'ltc.wikicheck.bookmarklet.fail')
                 [languages: SortedLanguages.get(), langCode: langCode]
                 return
+            } else {
+                flash.message = null
             }
             WikipediaQuickCheck checker = new WikipediaQuickCheck()
             String pageUrl = getPageUrl(params, checker, langCode)
@@ -72,6 +74,7 @@ class PageCheckController {
 
             MarkupAwareWikipediaResult result
             try {
+                flash.message = null
                 log.info("Checking page " + pageUrl)
                 result = checker.checkPage(new URL(pageUrl))
             } catch (PageNotFoundException e) {
