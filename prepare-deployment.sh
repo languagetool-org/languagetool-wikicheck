@@ -1,4 +1,8 @@
-#!/bin/sh
+#!/bin/bash
+
+pushd ../languagetool
+mvn install -DskipTests
+pushd
 
 grails war && \
   scp -i ~/.ssh/wikipedia/toollabs target/languagetool-wikicheck-0.1.war tools-login.wmflabs.org:/data/project/languagetool/ && \
