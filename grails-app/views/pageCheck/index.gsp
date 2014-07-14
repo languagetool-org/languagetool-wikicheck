@@ -145,7 +145,7 @@
                 </form>
             </g:if>
             <g:else>
-                <g:message code="ltc.no.rule.matches" args="${[Language.getLanguageForShortName(params.lang)]}"/>
+                <strong><g:message code="ltc.no.rule.matches" args="${[Language.getLanguageForShortName(params.lang)]}"/></strong>
             </g:else>
 
             <g:if test="${result.internalErrorCount > 0}">
