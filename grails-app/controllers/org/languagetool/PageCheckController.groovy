@@ -52,6 +52,8 @@ class PageCheckController {
             String pageUrl = getPageUrl(params, checker, langCode)
             String pageEditUrl = getPageEditUrl(pageUrl)
             Language language = checker.getLanguage(new URL(pageUrl))
+            params.lang = language.getShortName()
+            langCode = params.lang
             if (params.disabled) {
                 checker.setDisabledRuleIds(Arrays.asList(params.disabled.split(",")))
             } else {
@@ -82,7 +84,6 @@ class PageCheckController {
                 [languages: SortedLanguages.get(), langCode: langCode]
                 return
             }
-            params.lang = language.getShortName()
             long runTime = System.currentTimeMillis() - startTime
             log.info("WikiCheck: ${params.url} (${runTime}ms)")
             [result: result, appliedRuleMatches: result.getAppliedRuleMatches(),
