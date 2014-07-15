@@ -134,7 +134,7 @@
                         <tr>
                             <td></td>
                             <td>
-                                <g:submitButton style="margin-bottom: 10px" name="${message(code:'ltc.wikicheck.submit.button')}"/>
+                                <g:submitButton style="margin-bottom: 3px; min-width:100px" name="${message(code:'ltc.wikicheck.submit.button')}"/>
                                 <br/>
                                 <g:message code="ltc.wikicheck.submit.warning"/>
                                 <br/>
