@@ -1,4 +1,7 @@
 #!/bin/bash
+# See http://tools.wmflabs.org/languagetool/
+# This script will upload the web app to Tool Labs. Requires admin access to
+# the 'languagetool' project at Tool Labs.
 
 pushd ../languagetool
 mvn install -DskipTests
