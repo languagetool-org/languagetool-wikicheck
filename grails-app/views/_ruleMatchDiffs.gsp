@@ -66,15 +66,15 @@
                             <g:each in="${appliedRuleMatch.getRuleMatchApplications()}" var="app">
                                 <g:if test="${app.hasRealReplacement()}">
                                     <g:set var="newCorrectionText" value="${app.getCorrectedErrorContext(10)}"/>
-                                    <g:set var="spanStart" value="${newCorrectionText.indexOf(app.getErrorMarkerStart())}"/>
-                                    <g:set var="spanEnd" value="${newCorrectionText.indexOf(app.getErrorMarkerEnd())}"/>
+                                    <g:set var="spanStart" value="${newCorrectionText.indexOf(app.getErrorMarker().getStartMarker())}"/>
+                                    <g:set var="spanEnd" value="${newCorrectionText.indexOf(app.getErrorMarker().getEndMarker())}"/>
                                     <li><a href="#" onclick="return useSuggestion(this, 'repl${i}')">${newCorrectionText.substring(spanStart, spanEnd).replaceAll('<<span.*?>>', '').encodeAsHTML()}</a></li>
                                 </g:if>
                             </g:each>
                             <%-- marker should be the same for all corrections, so we use the first one: --%>
-                            <g:set var="startMarker" value="${firstApp.getErrorMarkerStart()}"/>
+                            <g:set var="startMarker" value="${firstApp.getErrorMarker().getStartMarker()}"/>
                             <g:set var="startPos" value="${firstApp.getOriginalText().indexOf(startMarker)}"/>
-                            <g:set var="endMarker" value="${firstApp.getErrorMarkerEnd()}"/>
+                            <g:set var="endMarker" value="${firstApp.getErrorMarker().getEndMarker()}"/>
                             <g:set var="endPos" value="${firstApp.getOriginalText().indexOf(endMarker) - startMarker.length()}"/>
                             <g:hiddenField name="repl${i}Start" value="${startPos}"/>
                             <g:hiddenField name="repl${i}End" value="${endPos}"/>
