@@ -3,7 +3,6 @@
 <head>
     <title><g:layoutTitle default="LanguageTool WikiCheck" /></title>
     <g:render template="/layouts/css"/>
-    <link type="text/css" rel="stylesheet" href="${resource(dir:'css',file:'mobile.css')}" />
     <link rel="shortcut icon" href="${resource(dir:'images',file:'favicon.ico')}" type="image/x-icon" />
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <g:layoutHead />
