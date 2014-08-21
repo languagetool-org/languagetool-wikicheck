@@ -33,11 +33,13 @@ class PageCheckController {
 
     def index = {
         String langCode
+        Language langObj
         try {
-            Language langObj = params.lang ? Language.getLanguageForShortName(params.lang) : null
+            langObj = params.lang ? Language.getLanguageForShortName(params.lang) : null
             langCode = langObj ? langObj.getShortName() : 'en'
         } catch (IllegalArgumentException ignore) {
             langCode = 'en'
+            langObj = Language.getLanguageForShortName('en')
         }
         if (params.url) {
             long startTime = System.currentTimeMillis()
@@ -81,7 +83,7 @@ class PageCheckController {
                 result = checker.checkPage(new URL(pageUrl))
             } catch (PageNotFoundException e) {
                 flash.message = message(code:'ltc.wikicheck.page.not.found', args: [pageUrl])
-                [languages: SortedLanguages.get(), langCode: langCode]
+                [languages: SortedLanguages.get(), langCode: langCode, language: language]
                 return
             }
             long runTime = System.currentTimeMillis() - startTime
@@ -95,9 +97,9 @@ class PageCheckController {
                     realEditUrl: pageEditUrl,
                     disabledRuleIds: checker.getDisabledRuleIds(),
                     languages: SortedLanguages.get(),
-                    langCode: langCode]
+                    langCode: langCode, language: language]
         } else {
-            [languages: SortedLanguages.get(), langCode: langCode]
+            [languages: SortedLanguages.get(), langCode: langCode, language: langObj]
         }
     }
 
