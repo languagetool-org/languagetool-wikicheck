@@ -88,7 +88,7 @@
 
             <h2 style="margin-top:10px;margin-bottom:10px"><g:message code="ltc.wikicheck.result.headline"/></h2>
 
-            <p><g:message code="ltc.wikicheck.result.url"/> <a href="${realUrl.encodeAsHTML()}">${realUrl.encodeAsHTML()}</a> (<a href="${realEditUrl.encodeAsHTML()}"><g:message code="ltc.wikicheck.result.edit"/></a>)</p>
+            <p><g:message code="ltc.wikicheck.result.url"/> <a href="${realUrl.encodeAsHTML()}">${realUrl.decodeURL().encodeAsHTML()}</a> (<a href="${realEditUrl.encodeAsHTML()}"><g:message code="ltc.wikicheck.result.edit"/></a>)</p>
 
             <p class="warn"><g:message code="ltc.wikicheck.beta.warning"/></p>
 
