@@ -18,7 +18,7 @@
         }
         function useSuggestion(item, id) {
             var suggestionField = $(id);
-            suggestionField.value = item.firstChild.data;
+            suggestionField.value = item.firstChild.data.replace(/\xA0/, "&nbsp;");
             return false;
         }
         function useNoSuggestion(id) {
