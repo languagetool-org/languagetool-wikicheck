@@ -37,15 +37,12 @@
                 <input type="hidden" name="lang" value="${lang.encodeAsHTML()}"/>
                 
                 <select name="notFixedFilter" onchange="this.form.submit()">
-                    <option ${params.notFixedFilter == '-' ? 'selected' : ''} value="0"><g:message code='ltc.feed.matches.unfixed.no.filter' args="${[2]}"/></option>
-                    <option ${params.notFixedFilter == '10' ? 'selected' : ''} value="10"><g:message code='ltc.feed.matches.unfixed.for.minutes' args="${[10]}"/></option>
+                    <option ${params.notFixedFilter == '-' ? 'selected' : ''} value="0"><g:message code='ltc.feed.matches.unfixed.no.filter'/></option>
                     <option ${params.notFixedFilter == '30' ? 'selected' : ''} value="30"><g:message code='ltc.feed.matches.unfixed.for.minutes' args="${[30]}"/></option>
                     <option ${params.notFixedFilter == '60' ? 'selected' : ''} value="60"><g:message code='ltc.feed.matches.unfixed.for.one.hour'/></option>
-                    <option ${params.notFixedFilter == '120' ? 'selected' : ''} value="120"><g:message code='ltc.feed.matches.unfixed.for.hours' args="${[2]}"/></option>
-                    <option ${params.notFixedFilter == '240' ? 'selected' : ''} value="240"><g:message code='ltc.feed.matches.unfixed.for.hours' args="${[4]}"/></option>
                     <option ${params.notFixedFilter == '480' ? 'selected' : ''} value="480"><g:message code='ltc.feed.matches.unfixed.for.hours' args="${[8]}"/></option>
-                    <option ${params.notFixedFilter == '960' ? 'selected' : ''} value="960"><g:message code='ltc.feed.matches.unfixed.for.hours' args="${[16]}"/></option>
                     <option ${params.notFixedFilter == '1440' ? 'selected' : ''} value="1440"><g:message code='ltc.feed.matches.unfixed.for.hours' args="${[24]}"/></option>
+                    <option ${params.notFixedFilter == '2880' ? 'selected' : ''} value="2880"><g:message code='ltc.feed.matches.unfixed.for.hours' args="${[48]}"/></option>
                 </select>
                 <select name="categoryFilter" onchange="this.form.filter.value='';this.form.submit()">
                     <option value=""><g:message code="ltc.corpus.match.category.filter.all"/></option>
