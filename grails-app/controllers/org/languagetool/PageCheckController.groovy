@@ -188,7 +188,7 @@ class PageCheckController {
             pageUrl = "http://" + lang + ".wikipedia.org/wiki/" + getRandomPageTitle(randomUrl).replace(' ', '_')
         } else if (params.url.startsWith("http://") || params.url.startsWith("https://")) {
             checker.validateWikipediaUrl(new URL(params.url))
-            pageUrl = params.url
+            pageUrl = URLDecoder.decode(params.url, "UTF-8")
         } else {
             pageUrl = "http://" + langCode + ".wikipedia.org/wiki/" + params.url.replace(' ', '_')
         }
