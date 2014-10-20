@@ -125,9 +125,29 @@ class FeedMatchesController {
     }
 
     private List getHiddenRuleIds(String langCode) {
-        List hiddenRuleIds = CorpusMatchController.getHiddenRuleIds(langCode, grailsApplication.config.disabledRulesPropFile)
-        hiddenRuleIds.addAll(CorpusMatchController.getHiddenRuleIds(langCode, grailsApplication.config.disabledRulesForFeedPropFile))
+        List hiddenRuleIds = getHiddenRuleIds(langCode, grailsApplication.config.disabledRulesPropFile)
+        hiddenRuleIds.addAll(getHiddenRuleIds(langCode, grailsApplication.config.disabledRulesForFeedPropFile))
         hiddenRuleIds
+    }
+
+    private List getHiddenRuleIds(String langCode, String propFileName) {
+        List hiddenRuleIds = []
+        Properties langToDisabledRules = new Properties()
+        def fis = new FileInputStream(propFileName)
+        try {
+            langToDisabledRules.load(fis)
+            hiddenRuleIds.addAll(langToDisabledRules.getProperty("all").split(",\\s*"))
+            String langSpecificDisabledRulesStr = langToDisabledRules.get(langCode)
+            if (langSpecificDisabledRulesStr) {
+                List<String> langSpecificDisabledRules = langSpecificDisabledRulesStr.split(",")
+                if (langSpecificDisabledRules) {
+                    hiddenRuleIds.addAll(langSpecificDisabledRules)
+                }
+            }
+        } finally {
+            fis.close()
+        }
+        return hiddenRuleIds
     }
 
     private List getMatchesByRule(cal, String langCode) {

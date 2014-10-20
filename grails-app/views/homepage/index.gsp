@@ -32,13 +32,6 @@
             <p><g:message code="ltc.wiki.check.explain"/></p>
         </div>
 
-    <!-- comment out, that DB table is currently empty
-        <h2><g:link controller="corpusMatch" action="list" params="[lang: lang.getShortName()]"><g:message code="ltc.check.results"/></g:link></h2>
-
-        <div class="mainPart">
-            <p><g:message code="ltc.check.explain.short"/></p>
-        </div> -->
-
     </div>
 
     <div style="margin-top: 30px">

@@ -1,4 +1,3 @@
-<%@ page import="org.languagetool.CorpusMatch" %>
 <%@ page import="org.languagetool.StringTools" %>
 <html>
     <head>
