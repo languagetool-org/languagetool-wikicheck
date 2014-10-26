@@ -166,7 +166,9 @@ class PageCheckController {
     }
 
     String getPageSubmitUrl(String url) {
-        return url.replace("http://", "https://").replace("/wiki/", "/w/index.php?title=") + "&action=submit"
+      def title = url.replaceFirst("http.*/wiki/", "")
+      def escapedTitle = title.replaceAll("&", "%26")  // otherwise we end up on the wrong page when editing e.g. "Dungeons & Dragons"
+      return url.replace("http://", "https://").replaceFirst("/wiki/.*", "/w/index.php?title=") + escapedTitle + "&action=submit"
     }
 
     String getPageTitle(String url) {
