@@ -85,6 +85,8 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate'
+
+    info   'grails.app.controllers.org.languagetool'
 }
 
 // Uncomment and edit the following lines to start using Grails encoding & escaping improvements
