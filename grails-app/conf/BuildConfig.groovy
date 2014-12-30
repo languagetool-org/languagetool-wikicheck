@@ -42,8 +42,8 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 
         runtime 'mysql:mysql-connector-java:5.1.31'
-        runtime 'org.languagetool:language-all:2.8-SNAPSHOT'
-        runtime 'org.languagetool:languagetool-wikipedia:2.8-SNAPSHOT'
+        runtime 'org.languagetool:language-all:2.9-SNAPSHOT'
+        runtime 'org.languagetool:languagetool-wikipedia:2.9-SNAPSHOT'
         // TODO: how to add dependency to languagetool-core with type 'test-jar'?
 
         // runtime 'mysql:mysql-connector-java:5.1.22'
