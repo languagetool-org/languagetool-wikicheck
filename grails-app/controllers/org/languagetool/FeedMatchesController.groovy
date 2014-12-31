@@ -82,6 +82,28 @@ class FeedMatchesController {
                 latestCheckDateWarning: latestCheckDateWarning, latestCheckDate: latestCheckDate]
     }
 
+    // http://statuscake.com cannot check for text with the free account, so we introduce
+    // our own check that returns status 503 if there's a problem:
+    def status() {
+        List failures = []
+        for (Language lang  : Language.REAL_LANGUAGES) {
+            Date latestCheckDate = FeedChecks.findByLanguageCode(lang.getShortName())?.checkDate
+            if (latestCheckDate) {
+                Calendar earliestDateStillOkay = new Date().toCalendar()
+                earliestDateStillOkay.add(Calendar.MINUTE, - MAXIMUM_CHECK_AGE_IN_MINUTES)
+                boolean latestCheckDateWarning = latestCheckDate.before(earliestDateStillOkay.time)
+                if (latestCheckDateWarning) {
+                    failures.add(lang.getShortName())
+                }
+            }
+        }
+        if (failures.size() == 0) {
+            render "OK"
+        } else {
+            render(text: "FAIL: ${failures}", status: 503)
+        }
+    }
+
     private String getLanguageCode() {
         String langCode = "en"
         if (params.lang) {
