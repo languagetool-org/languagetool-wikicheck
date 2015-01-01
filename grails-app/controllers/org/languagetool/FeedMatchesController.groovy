@@ -69,7 +69,7 @@ class FeedMatchesController {
             eq('languageCode', langCode)
         }
         boolean latestCheckDateWarning = false
-        Date latestCheckDate = FeedChecks.findByLanguageCode(langCode)?.checkDate
+        Date latestCheckDate = Pings.findByLanguageCode(langCode)?.checkDate
         if (latestCheckDate) {
             Calendar earliestDateStillOkay = new Date().toCalendar()
             earliestDateStillOkay.add(Calendar.MINUTE, - MAXIMUM_CHECK_AGE_IN_MINUTES)
@@ -87,7 +87,7 @@ class FeedMatchesController {
     def status() {
         List failures = []
         for (Language lang  : Language.REAL_LANGUAGES) {
-            Date latestCheckDate = FeedChecks.findByLanguageCode(lang.getShortName())?.checkDate
+            Date latestCheckDate = Pings.findByLanguageCode(lang.getShortName())?.checkDate
             if (latestCheckDate) {
                 Calendar earliestDateStillOkay = new Date().toCalendar()
                 earliestDateStillOkay.add(Calendar.MINUTE, - MAXIMUM_CHECK_AGE_IN_MINUTES)
