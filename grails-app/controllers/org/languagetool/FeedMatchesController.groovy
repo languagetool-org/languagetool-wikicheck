@@ -100,6 +100,7 @@ class FeedMatchesController {
         if (failures.size() == 0) {
             render "OK"
         } else {
+            log.warn("Status check fail: ${failures}")
             render(text: "FAIL: ${failures}", status: 503)
         }
     }
