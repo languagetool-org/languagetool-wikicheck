@@ -101,7 +101,12 @@ class FeedMatchesController {
             render "OK"
         } else {
             log.warn("Status check fail: ${failures}")
-            render(text: "FAIL: ${failures}", status: 503)
+            if (params.nofail) {
+                // useful to see the error message as WMF labs show its own error page when we return code 503:
+                render(text: "FAIL: ${failures}")
+            } else {
+                render(text: "FAIL: ${failures}", status: 503)
+            }
         }
     }
 
