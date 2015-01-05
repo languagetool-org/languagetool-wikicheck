@@ -22,6 +22,7 @@ package org.languagetool
 class FeedMatchesController {
 
     private final static int MAXIMUM_CHECK_AGE_IN_MINUTES = 3*60
+    private final static int MAXIMUM_PING_AGE_IN_MINUTES = 10
 
     def index = {
         redirect(action:list,params:params)
@@ -90,7 +91,7 @@ class FeedMatchesController {
             Date latestCheckDate = Pings.findByLanguageCode(lang.getShortName())?.checkDate
             if (latestCheckDate) {
                 Calendar earliestDateStillOkay = new Date().toCalendar()
-                earliestDateStillOkay.add(Calendar.MINUTE, - MAXIMUM_CHECK_AGE_IN_MINUTES)
+                earliestDateStillOkay.add(Calendar.MINUTE, - MAXIMUM_PING_AGE_IN_MINUTES)
                 boolean latestCheckDateWarning = latestCheckDate.before(earliestDateStillOkay.time)
                 if (latestCheckDateWarning) {
                     failures.add(lang.getShortName())
