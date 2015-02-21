@@ -1,6 +1,6 @@
 #!/bin/bash
 # See http://community.languagetool.org/wikiCheck/
-# This script will upload the web app to out server. Requires admin access.
+# This script will upload the web app to our server. Requires admin access.
 
 pushd ../languagetool
 mvn install -DskipTests
