@@ -60,8 +60,8 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
-        disabledRulesPropFile="/data/project/languagetool/git/languagetool-community-website/grails-app/conf/disabled_rules.properties"
-        disabledRulesForFeedPropFile="/data/project/languagetool/git/languagetool-community-website/grails-app/conf/disabled_rules_for_feed.properties"
+        disabledRulesPropFile="/home/languagetool/ltcommunity/corpus/ltcommunity/disabled_rules.properties"
+        disabledRulesForFeedPropFile="/home/languagetool/ltcommunity/corpus/ltcommunity/disabled_rules_for_feed.properties"
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }

@@ -13,4 +13,4 @@
 
 <p style="margin-top: 10px">
     <g:message code="ltc.wikicheck.bookmarklet"/>
-    <a href="javascript:(function(){%20window.open('http://tools.wmflabs.org/languagetool/pageCheck/index?url='+escape(location.href));%20})();"><g:message code="ltc.wikicheck.bookmarklet.link"/></a></p>
+    <a href="javascript:(function(){%20window.open('http://community.languagetool.org/wikiCheck/pageCheck?url='+escape(location.href));%20})();"><g:message code="ltc.wikicheck.bookmarklet.link"/></a></p>

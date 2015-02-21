@@ -1,9 +1,0 @@
-{
-  "name" : "languagetool-wikicheck",
-  "title" : "LanguageTool WikiCheck",
-  "description" : "Style and grammar checking of existing Wikipedia pages and recent changes",
-  "url" : "http://tools.wmflabs.org/languagetool/",
-  "keywords" : "grammar, style, spell checking, spelling, qa",
-  "author" : "Daniel Naber",
-  "repository" : "https://github.com/languagetool-org/languagetool-wikicheck.git"
-}
