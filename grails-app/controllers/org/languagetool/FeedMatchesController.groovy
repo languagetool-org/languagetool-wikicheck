@@ -76,7 +76,7 @@ class FeedMatchesController {
             earliestDateStillOkay.add(Calendar.MINUTE, - MAXIMUM_CHECK_AGE_IN_MINUTES)
             latestCheckDateWarning = latestCheckDate.before(earliestDateStillOkay.time)
         }
-        Language langObj = Language.getLanguageForShortName(langCode)
+        Language langObj = Languages.getLanguageForShortName(langCode)
         [ languageMatchCount: languageMatchCount, corpusMatchList: matches,
                 languages: SortedLanguages.get(), lang: langCode, totalMatches: allMatchesCount,
                 matchesByRule: matchesByRule, matchesByCategory: matchesByCategory, hiddenRuleIds: hiddenRuleIds, language: langObj,
@@ -87,7 +87,7 @@ class FeedMatchesController {
     // our own check that returns status 503 if there's a problem:
     def status() {
         List failures = []
-        for (Language lang  : Language.REAL_LANGUAGES) {
+        for (Language lang  : Languages.get()) {
             Date latestCheckDate = Pings.findByLanguageCode(lang.getShortName())?.checkDate
             if (latestCheckDate) {
                 Calendar earliestDateStillOkay = new Date().toCalendar()
@@ -205,7 +205,7 @@ class FeedMatchesController {
     def feed = {
         Calendar calendar = getCalender()
         String langCode = getLanguageCode()
-        Language lang = Language.getLanguageForShortName(langCode)
+        Language lang = Languages.getLanguageForShortName(langCode)
         List hiddenRuleIds = getHiddenRuleIds(langCode)
         if (params.int('max', 10) > 250) {
             params.max = 250

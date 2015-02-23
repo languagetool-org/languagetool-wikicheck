@@ -35,11 +35,11 @@ class PageCheckController {
         String langCode
         Language langObj
         try {
-            langObj = params.lang ? Language.getLanguageForShortName(params.lang) : null
+            langObj = params.lang ? Languages.getLanguageForShortName(params.lang) : null
             langCode = langObj ? langObj.getShortName() : 'en'
         } catch (IllegalArgumentException ignore) {
             langCode = 'en'
-            langObj = Language.getLanguageForShortName('en')
+            langObj = Languages.getLanguageForShortName('en')
         }
         if (params.url) {
             long startTime = System.currentTimeMillis()
@@ -109,7 +109,7 @@ class PageCheckController {
     def showErrors = {
         String langCode
         try {
-            Language langObj = params.lang ? Language.getLanguageForShortName(params.lang) : null
+            Language langObj = params.lang ? Languages.getLanguageForShortName(params.lang) : null
             langCode = langObj ? langObj.getShortName() : 'en'
         } catch (IllegalArgumentException ignore) {
             langCode = 'en'

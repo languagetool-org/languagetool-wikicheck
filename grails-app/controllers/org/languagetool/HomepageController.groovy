@@ -23,7 +23,7 @@ class HomepageController {
 
     def index = {
         String langCode = params.lang ? params.lang : "en"
-        Language langObject = Language.getLanguageForShortName(langCode)
+        Language langObject = Languages.getLanguageForShortName(langCode)
         [languages: SortedLanguages.get(), lang: langObject, language: langObject]
     }
     
