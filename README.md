@@ -2,7 +2,7 @@ languagetool-wikicheck
 ======================
 
 Wikipedia style and grammar checker, powered by LanguageTool. This is the software running at
-http://tools.wmflabs.org/languagetool/.
+http://community.languagetool.org/wikiCheck/.
 
 It will check pages on requests. For the continuous check of the 'recent changes' feed, it will
 only display the results it finds in the database. To fill this database, download
