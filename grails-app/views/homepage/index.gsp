@@ -13,6 +13,11 @@
 
     <g:render template="/languageSelection"/>
 
+    <p style="margin-bottom: 10px">
+        <a href="http://community.languagetool.org/">&lt;&lt;</a>
+        <a href="http://community.languagetool.org/"><g:message code="ltc.wiki.backlink"/></a>
+    </p>
+
     <p><g:message code="ltc.wiki.intro"/></p>
 
     <div class="dialog">
