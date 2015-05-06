@@ -86,22 +86,29 @@ class FeedMatchesController {
     // http://statuscake.com cannot check for text with the free account, so we introduce
     // our own check that returns status 503 if there's a problem:
     def status() {
-        List failures = []
+        Set okay = []
+        Set failures = []
+        Set noDate = []
+        Calendar earliestDateStillOkay = new Date().toCalendar()
         for (Language lang  : Languages.get()) {
             Date latestCheckDate = Pings.findByLanguageCode(lang.getShortName())?.checkDate
             if (latestCheckDate) {
-                Calendar earliestDateStillOkay = new Date().toCalendar()
                 earliestDateStillOkay.add(Calendar.MINUTE, - MAXIMUM_PING_AGE_IN_MINUTES)
                 boolean latestCheckDateWarning = latestCheckDate.before(earliestDateStillOkay.time)
                 if (latestCheckDateWarning) {
                     failures.add(lang.getShortName())
+                } else {
+                    okay.add(lang.getShortName())
                 }
+            } else {
+                noDate.add(lang.getShortName())
             }
         }
         if (failures.size() == 0) {
+            log.info("Status check fail: none, okay: ${okay}, no date: ${noDate}, threshold date: ${earliestDateStillOkay.getTime()}")
             render "OK"
         } else {
-            log.warn("Status check fail: ${failures}")
+            log.warn("Status check fail: ${failures} (okay: ${okay}, no date: ${noDate}, threshold date: ${earliestDateStillOkay.getTime()})")
             if (params.nofail) {
                 // useful to see the error message as WMF labs show its own error page when we return code 503:
                 render(text: "FAIL: ${failures}")
