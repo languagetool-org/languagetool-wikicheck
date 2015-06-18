@@ -186,13 +186,13 @@ class PageCheckController {
             if (lang.length() < 2 || lang.length() > 3) {
                 throw new Exception("Invalid language: " + lang)
             }
-            URL randomUrl = new URL("http://" + lang + ".wikipedia.org/w/api.php?action=query&list=random&rnnamespace=0&rnlimit=1&format=xml")
-            pageUrl = "http://" + lang + ".wikipedia.org/wiki/" + getRandomPageTitle(randomUrl).replace(' ', '_')
+            URL randomUrl = new URL("https://" + lang + ".wikipedia.org/w/api.php?action=query&list=random&rnnamespace=0&rnlimit=1&format=xml")
+            pageUrl = "https://" + lang + ".wikipedia.org/wiki/" + getRandomPageTitle(randomUrl).replace(' ', '_')
         } else if (params.url.startsWith("http://") || params.url.startsWith("https://")) {
             checker.validateWikipediaUrl(new URL(params.url))
             pageUrl = URLDecoder.decode(params.url, "UTF-8")
         } else {
-            pageUrl = "http://" + langCode + ".wikipedia.org/wiki/" + params.url.replace(' ', '_')
+            pageUrl = "https://" + langCode + ".wikipedia.org/wiki/" + params.url.replace(' ', '_')
         }
         return pageUrl.replaceAll("#.*", "") // ignore page anchors
     }
