@@ -93,7 +93,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <g:set var="prevRuleId" value="${null}"/>
+                    <g:set var="prevRuleMessage" value="${null}"/>
                     <g:set var="prevDay" value=""/>
                     <g:each in="${corpusMatchList}" status="i" var="match">
                         <g:set var="day" value="${formatDate(date:match.editDate, format:'yyyy-MM-dd')}"/>
@@ -113,14 +113,14 @@
                             <td>
                                 <g:set var="cleanText" value="${StringTools.cleanError(match.errorContext)}"/>
 
-                                <g:if test="${match.ruleId != prevRuleId}">
+                                <g:if test="${match.ruleMessage != prevRuleMessage}">
                                     <div class="ruleMessage">
                                         <a href="http://community.languagetool.org/rule/show/${match.ruleId.encodeAsHTML()}?lang=${lang.encodeAsHTML()}&subId=${match.ruleSubId.encodeAsHTML()}&textToCheck=${cleanText.encodeAsHTML()}"
                                             >${StringTools.formatError(match.ruleMessage.encodeAsHTML())}</a>
                                         <span class="category">${match.ruleCategory}</span>
                                     </div>
                                 </g:if>
-                                <g:set var="prevRuleId" value="${match.ruleId}"/>
+                                <g:set var="prevRuleMessage" value="${match.ruleMessage}"/>
 
                                 <div style="margin-bottom: 5px; margin-top: 5px; margin-left: 20px;">
                                     <span style="font-family: monospace">${StringTools.formatError(match.errorContext.encodeAsHTML())}</span>
