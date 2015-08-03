@@ -51,6 +51,13 @@ class PageCheckController {
                 flash.message = null
             }
             WikipediaQuickCheck checker = new WikipediaQuickCheck()
+            try {
+                checker.validateWikipediaUrl(new URL(params.url))
+            } catch (RuntimeException e) {
+                flash.message = message(code:'ltc.wikicheck.invalid.url', args: [params.url])
+                [languages: SortedLanguages.get(), langCode: langCode]
+                return
+            }
             String pageUrl = getPageUrl(params, checker, langCode)
             String pageEditUrl = getPageEditUrl(pageUrl)
             Language language = checker.getLanguage(new URL(pageUrl))
