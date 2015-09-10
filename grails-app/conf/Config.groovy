@@ -6,6 +6,9 @@ hide.languages = ["cs", "ml", "be", "da", "sk", "zh", "ast", "km", "en-GB", "en-
 // show these languages directly in the navigation bar (not in the drop down):
 expose.languages = ["en", "fr", "de", "es", "pl", "ca", "br", "nl", "pt", "es", "eo", "ru"]
 
+// Google ngram data for confusion probability rule:
+ngramindex = "/home/languagetool/ngram-data"
+
 grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false

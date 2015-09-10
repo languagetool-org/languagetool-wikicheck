@@ -50,7 +50,8 @@ class PageCheckController {
             } else {
                 flash.message = null
             }
-            WikipediaQuickCheck checker = new WikipediaQuickCheck()
+            File ngramDir = grailsApplication.config.ngramindex ? new File(grailsApplication.config.ngramindex) : null
+            WikipediaQuickCheck checker = new WikipediaQuickCheck(ngramDir)
             if (params.url && (params.url.startsWith("http://") || params.url.startsWith("https://"))) {
                 try {
                     checker.validateWikipediaUrl(new URL(params.url))
@@ -128,7 +129,8 @@ class PageCheckController {
             langToDisabledRules.load(new FileInputStream(grailsApplication.config.disabledRulesPropFile))
 
             long startTime = System.currentTimeMillis()
-            WikipediaQuickCheck checker = new WikipediaQuickCheck()
+            File ngramDir = grailsApplication.config.ngramindex ? new File(grailsApplication.config.ngramindex) : null
+            WikipediaQuickCheck checker = new WikipediaQuickCheck(ngramDir)
             String pageUrl = getPageUrl(params, checker, langCode)
             String pageEditUrl = getPageEditUrl(pageUrl)
             checker.validateWikipediaUrl(new URL(pageUrl))
