@@ -11,6 +11,8 @@ grails.project.source.level = 1.6
 //   run: [maxMemory:1024, minMemory:64, debug:false, maxPerm:256]
 //]
 
+grails.project.dependency.resolver = "maven"
+
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
@@ -48,17 +50,14 @@ grails.project.dependency.resolution = {
         runtime('org.languagetool:languagetool-wikipedia:3.2-SNAPSHOT') {
             exclude "slf4j-nop"
         }
-        // TODO: how to add dependency to languagetool-core with type 'test-jar'?
-
-        // runtime 'mysql:mysql-connector-java:5.1.22'
+        runtime 'org.springframework:spring-expression:4.0.5.RELEASE'
     }
 
     plugins {
         compile ":feeds:1.6"
-        compile ':scaffolding:2.0.3'
-        runtime ":hibernate:3.6.10.16"
-        runtime ":jquery:1.8.3"
-        runtime ":resources:1.2.8"
+        //compile ':scaffolding:2.1.0'
+        runtime ":hibernate:3.6.10.14"
+        runtime ':jquery:1.11.0.2'
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"
@@ -68,7 +67,5 @@ grails.project.dependency.resolution = {
         build ":tomcat:7.0.54"
 
         runtime ":database-migration:1.4.0"
-
-        compile ':cache:1.0.1'
     }
 }
