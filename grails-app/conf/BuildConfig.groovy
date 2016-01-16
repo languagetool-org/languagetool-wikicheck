@@ -50,7 +50,7 @@ grails.project.dependency.resolution = {
         runtime('org.languagetool:languagetool-wikipedia:3.3-SNAPSHOT') {
             exclude "slf4j-nop"
         }
-        runtime 'org.springframework:spring-expression:4.0.5.RELEASE'
+        runtime 'org.springframework:spring-expression:4.2.0.RELEASE'
     }
 
     plugins {
