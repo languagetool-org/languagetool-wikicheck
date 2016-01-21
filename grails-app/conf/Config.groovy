@@ -2,7 +2,7 @@ wikipedia.summary.link = [ en: '[[LanguageTool]]', de: '[[WP:LanguageTool]]' ]
 // languages not visible in the user interface (e.g. because they are
 // not properly supported yet):
 hide.languages = ["cs", "ml", "be", "da", "sk", "zh", "ast", "km", "en-GB", "en-US", "en-CA", "en-ZA", "en-NZ", "en-AU",
-        "de-DE", "de-AT", "de-CH", "pt-BR", "pt-PT", "ca-ES-valencia", "ca-ES", "de-DE-x-simple-language"]
+        "de-DE", "de-AT", "de-CH", "pt-BR", "pt-PT", "ca-ES-valencia", "de-DE-x-simple-language"]
 // show these languages directly in the navigation bar (not in the drop down):
 expose.languages = ["en", "fr", "de", "es", "pl", "ca", "br", "nl", "pt", "es", "eo", "ru"]
 
