@@ -51,7 +51,8 @@ class PageCheckController {
                 flash.message = null
             }
             File ngramDir = grailsApplication.config.ngramindex ? new File(grailsApplication.config.ngramindex) : null
-            WikipediaQuickCheck checker = new WikipediaQuickCheck(ngramDir)
+            int maxBytes = grailsApplication.config.maxBytes
+            WikipediaQuickCheck checker = new WikipediaQuickCheck(ngramDir, maxBytes)
             if (params.url && (params.url.startsWith("http://") || params.url.startsWith("https://"))) {
                 try {
                     checker.validateWikipediaUrl(new URL(params.url))
@@ -130,7 +131,8 @@ class PageCheckController {
 
             long startTime = System.currentTimeMillis()
             File ngramDir = grailsApplication.config.ngramindex ? new File(grailsApplication.config.ngramindex) : null
-            WikipediaQuickCheck checker = new WikipediaQuickCheck(ngramDir)
+            int maxBytes = grailsApplication.config.maxBytes
+            WikipediaQuickCheck checker = new WikipediaQuickCheck(ngramDir, maxBytes)
             String pageUrl = getPageUrl(params, checker, langCode)
             String pageEditUrl = getPageEditUrl(pageUrl)
             checker.validateWikipediaUrl(new URL(pageUrl))
