@@ -1,6 +1,9 @@
 languagetool-wikicheck
 ======================
 
+## This project is not maintained anymore
+
+
 Wikipedia style and grammar checker, powered by LanguageTool. ~~This is the software running at
 http://community.languagetool.org/wikiCheck/.~~
 
